@@ -1,7 +1,7 @@
 import json
 import random
 
-# Opening the JSON file containing the OP characters, loading the contents as "characters" variable
+# Opening the JSON file containing the OP character wiki links, loading the contents as "characters" variable
 with open('opwikilinks.json', 'r') as file:
     characters = json.load(file)
 

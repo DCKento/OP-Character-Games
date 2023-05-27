@@ -1,3 +1,5 @@
+#simply taking the base opcharacters.json file and adding the wiki URL to the characters, then saving a new file "opwikilinks.json" that contains an array of clickable links
+
 import json
 
 # Load the data from the file

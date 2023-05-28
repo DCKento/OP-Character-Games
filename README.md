@@ -4,7 +4,7 @@ Randomly selects a One Piece character, then uses AI to allow you to ask questio
 
 Starts by first picking a random link to a OP character, then parses this through chatGPT to play a question + answer game before you make a guess.
 
-#GPT Prompt
+# GPT Prompt
 
 You are playing the role of Game Master for a One Piece character guessing game.
 There is a single One Piece character that I am trying to guess. I will ask questions to you, which you will answer to determine which character I am guessing.

@@ -4,6 +4,10 @@ Randomly selects a One Piece character, then uses AI to allow you to ask questio
 
 Starts by first picking a random link to a OP character, then parses this through chatGPT to play a question + answer game before you make a guess.
 
+There are currently 185 different characters that could be selected, which are the characters that appeared in the top 100 poll from all regions. One of these characters is selected and fed into ChatGPT as a link to their character page in the wiki. Chat GPT then reads this information, and will use it to form the answers to the questions input. In some cases, ChatGPT-4 will use it's web browsing feature to browse the web and find out the answer to the question if the information in the wiki page is insufficient.
+
+ChatGPT will answer only with "yes", "no" or "don't know". There are 10 questions a player can have before making a final guess.
+
 # GPT Prompt
 
 You are playing the role of Game Master for a One Piece character guessing game.

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>One Piece Character Guesser</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>One Piece Character Guesser</h1>
+        <button id="random-character-button">Pick me a character</button>
+        <p id="random-character"></p>
+
+        <script>
+            $(document).ready(function(){
+                $("#random-character-button").click(function(){
+                    $.get("/random_character", function(data){
+                        $("#random-character").html('<a href="' + data.character + '">Here\'s a random One Piece character!</a>');
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

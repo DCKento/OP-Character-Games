@@ -7,13 +7,30 @@
     <body>
         <h1>One Piece Character Guesser</h1>
         <button id="random-character-button">Pick me a character</button>
+        <button id="reroll-button" style="display:none">Reroll the character</button>
         <p id="random-character"></p>
 
         <script>
+            function formatCharacterName(characterUrl) {
+                // extract the last path segment and then replace underscores with spaces and capitalize each word
+                var characterName = characterUrl.split('/').pop();
+                var formattedName = characterName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                return formattedName;
+            }
+
             $(document).ready(function(){
                 $("#random-character-button").click(function(){
                     $.get("/random_character", function(data){
-                        $("#random-character").html('<a href="' + data.character + '">Here\'s a random One Piece character!</a>');
+                        var formattedName = formatCharacterName(data.character);
+                        $("#random-character").html('Your random One Piece character is <a href="' + data.character + '">' + formattedName + '</a>');
+                        $("#random-character-button").hide();
+                        $("#reroll-button").show();
+                    });
+                });
+                $("#reroll-button").click(function(){
+                    $.get("/random_character", function(data){
+                        var formattedName = formatCharacterName(data.character);
+                        $("#random-character").html('Your random One Piece character is <a href="' + data.character + '">' + formattedName + '</a>');
                     });
                 });
             });

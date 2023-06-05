@@ -1,39 +1,27 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>One Piece Character Guesser</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    </head>
-    <body>
-        <h1>One Piece Character Guesser</h1>
-        <button id="random-character-button">Pick me a character</button>
-        <button id="reroll-button" style="display:none">Reroll the character</button>
-        <p id="random-character"></p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>One Piece Character Guesser</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>One Piece Character Guesser</h1>
+    <button onclick="getRandomCharacter('random')">Pick me a random character</button>
+    <button onclick="getRandomCharacter('easy')">Pick me an easy character</button>
+    <button onclick="getRandomCharacter('medium')">Pick me a medium character</button>
+    <button onclick="getRandomCharacter('hard')">Pick me a hard character</button>
+    <button onclick="getRandomCharacter('extreme')">Pick me an extreme character</button>
+    <p id="random_character"></p>
 
-        <script>
-            function formatCharacterName(characterUrl) {
-                // extract the last path segment and then replace underscores with spaces and capitalize each word
-                var characterName = characterUrl.split('/').pop();
-                var formattedName = characterName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                return formattedName;
-            }
-
-            $(document).ready(function(){
-                $("#random-character-button").click(function(){
-                    $.get("/random_character", function(data){
-                        var formattedName = formatCharacterName(data.character);
-                        $("#random-character").html('Your random One Piece character is <a href="' + data.character + '">' + formattedName + '</a>');
-                        $("#random-character-button").hide();
-                        $("#reroll-button").show();
-                    });
-                });
-                $("#reroll-button").click(function(){
-                    $.get("/random_character", function(data){
-                        var formattedName = formatCharacterName(data.character);
-                        $("#random-character").html('Your random One Piece character is <a href="' + data.character + '">' + formattedName + '</a>');
-                    });
-                });
+    <script>
+        function getRandomCharacter(difficulty) {
+            $.get("/random_character", { difficulty: difficulty }, function(data){
+                let name = data.url.split("/").pop().replace("_", " ");
+                let message = "Your random One Piece character is: " + '<a href="' + data.url + '">' + name + '</a>';
+                $("#random_character").html(message);
             });
-        </script>
-    </body>
+        }
+    </script>
+</body>
 </html>

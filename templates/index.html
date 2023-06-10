@@ -2,23 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>One Piece Character Guesser</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>One Piece Character Selector</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        #random_character {
+            word-wrap: break-word;
+        }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <h1>One Piece Character Guesser</h1>
-    <button onclick="getRandomCharacter('random')">Pick me a random character</button>
-    <button onclick="getRandomCharacter('easy')">Pick me an easy character</button>
-    <button onclick="getRandomCharacter('medium')">Pick me a medium character</button>
-    <button onclick="getRandomCharacter('hard')">Pick me a hard character</button>
-    <button onclick="getRandomCharacter('extreme')">Pick me an extreme character</button>
-    <p id="random_character"></p>
+    <div class="container mt-5">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">One Piece Character Selector</h1>
+            <p class="lead">Click on a button to get a character</p>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary m-1" onclick="getRandomCharacter('random')">Random Character</button>
+            <button class="btn btn-info m-1" onclick="getRandomCharacter('easy')">Easy Character</button>
+            <button class="btn btn-warning m-1" onclick="getRandomCharacter('medium')">Medium Character</button>
+            <button class="btn btn-danger m-1" onclick="getRandomCharacter('hard')">Hard Character</button>
+            <button class="btn btn-dark m-1" onclick="getRandomCharacter('extreme')">Extreme Character</button>
+        </div>
+        <div class="mt-5 text-center">
+            <p id="random_character" class="h3"></p>
+        </div>
+    </div>
 
     <script>
         function getRandomCharacter(difficulty) {
             $.get("/random_character", { difficulty: difficulty }, function(data){
-                let name = data.url.split("/").pop().replace("_", " ");
-                let message = "Your random One Piece character is: " + '<a href="' + data.url + '">' + name + '</a>';
+                let name = data.url.split("/").pop().replace(/_/g, " ");
+                let message = "Your random One Piece character is " + '<a href="' + data.url + '">' + name + '</a>';
                 $("#random_character").html(message);
             });
         }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>One Piece Crew Builder</title>
+</head>
+<body>
+    <h1>Player 1's Crew:</h1>
+    {% for role, character in crew1.items() %}
+    <p>{{ role }}: <a href="{{ character['url'] }}">{{ character['url'].split('/').pop().replace('_', ' ') }}</a></p>
+    {% endfor %}
+    
+    <h1>Player 2's Crew:</h1>
+    {% for role, character in crew2.items() %}
+    <p>{{ role }}: <a href="{{ character['url'] }}">{{ character['url'].split('/').pop().replace('_', ' ') }}</a></p>
+    {% endfor %}
+
+    <form method="post">
+        <h2>Assign a Character</h2>
+        <label for="player">Player:</label>
+        <input type="text" id="player" name="player">
+        <label for="role">Role:</label>
+        <input type="text" id="role" name="role">
+        <input type="submit" value="Assign">
+    </form>
+</body>
+</html>

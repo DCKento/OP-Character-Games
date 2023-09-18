@@ -24,8 +24,29 @@ def get_random_character_from_easy_medium_or_hard_only():
     return character
 
 # Structures to hold crew members for player 1 and player 2
-crew1 = []
-crew2 = []
+crew1 = { 'Captain': None, 
+          'First Mate': None, 
+          'Navigator': None, 
+          'Helmsman': None,
+          'Fighter': None,
+          'Sniper': None,
+          'Cook': None,
+          'Doctor': None,
+          'Musician': None,
+          'Shipwright': None,
+          'Archeologist': None }
+
+crew2 = { 'Captain': None, 
+          'First Mate': None, 
+          'Navigator': None, 
+          'Helmsman': None,
+          'Fighter': None,
+          'Sniper': None,
+          'Cook': None,
+          'Doctor': None,
+          'Musician': None,
+          'Shipwright': None,
+          'Archeologist': None }
 
 @app.route('/crewbuilder', methods=['GET', 'POST'])
 def crewbuilder():
@@ -34,9 +55,9 @@ def crewbuilder():
         role = request.form['role']
         character = get_random_character_from_easy_medium_or_hard_only()
 
-        if player == "1":
+        if player == "1" and not crew1[role]:
             crew1[role] = character
-        elif player == "2":
+        elif player == "2" and not crew2[role]:
             crew2[role] = character
 
         return redirect('/crewbuilder')

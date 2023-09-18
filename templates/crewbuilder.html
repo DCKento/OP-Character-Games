@@ -15,12 +15,20 @@
 
         <h1>Player 1's Crew:</h1>
         {% for role, character in crew1.items() %}
-        <p>{{ role }}: <a href="{{ character['url'] }}">{{ character['url'].split('/').pop().replace('_', ' ') }}</a></p>
+        {% if character %}
+        <p>{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
+        {% else %}
+        <p>{{ role }}: Not assigned</p>
+        {% endif %}
         {% endfor %}
 
         <h1>Player 2's Crew:</h1>
         {% for role, character in crew2.items() %}
-        <p>{{ role }}: <a href="{{ character['url'] }}">{{ character['url'].split('/').pop().replace('_', ' ') }}</a></p>
+        {% if character %}
+        <p>{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
+        {% else %}
+        <p>{{ role }}: Not assigned</p>
+        {% endif %}
         {% endfor %}
 
         <form method="post">

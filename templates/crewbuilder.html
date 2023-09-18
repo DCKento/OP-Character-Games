@@ -2,26 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>One Piece Crew Builder</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Player 1's Crew:</h1>
-    {% for role, character in crew1.items() %}
-    <p>{{ role }}: <a href="{{ character['url'] }}">{{ character['url'].split('/').pop().replace('_', ' ') }}</a></p>
-    {% endfor %}
-    
-    <h1>Player 2's Crew:</h1>
-    {% for role, character in crew2.items() %}
-    <p>{{ role }}: <a href="{{ character['url'] }}">{{ character['url'].split('/').pop().replace('_', ' ') }}</a></p>
-    {% endfor %}
+    <div class="container mt-5">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">One Piece Crew Builder</h1>
+            <p class="lead">Formulate your crew!</p>
+        </div>
 
-    <form method="post">
-        <h2>Assign a Character</h2>
-        <label for="player">Player:</label>
-        <input type="text" id="player" name="player">
-        <label for="role">Role:</label>
-        <input type="text" id="role" name="role">
-        <input type="submit" value="Assign">
-    </form>
+        <h1>Player 1's Crew:</h1>
+        {% for role, character in crew1.items() %}
+        <p>{{ role }}: <a href="{{ character['url'] }}">{{ character['url'].split('/').pop().replace('_', ' ') }}</a></p>
+        {% endfor %}
+
+        <h1>Player 2's Crew:</h1>
+        {% for role, character in crew2.items() %}
+        <p>{{ role }}: <a href="{{ character['url'] }}">{{ character['url'].split('/').pop().replace('_', ' ') }}</a></p>
+        {% endfor %}
+
+        <form method="post">
+            <div class="form-group">
+                <label for="player">Player:</label>
+                <input type="text" class="form-control" id="player" name="player">
+            </div>
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <input type="text" class="form-control" id="role" name="role">
+            </div>
+            <button type="submit" class="btn btn-primary">Assign</button>
+        </form>
+
+        <div class="mt-5 text-center">
+            <a href="/" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
 </body>
 </html>

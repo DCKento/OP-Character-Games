@@ -13,35 +13,60 @@
             <p class="lead">Formulate your crew!</p>
         </div>
 
-        <h1>Player 1's Crew:</h1>
-        {% for role, character in crew1.items() %}
-        {% if character %}
-        <p>{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
-        {% else %}
-        <p>{{ role }}: Not assigned</p>
-        {% endif %}
-        {% endfor %}
+        <div class="row">
+            <div class="col">
 
-        <h1>Player 2's Crew:</h1>
-        {% for role, character in crew2.items() %}
-        {% if character %}
-        <p>{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
-        {% else %}
-        <p>{{ role }}: Not assigned</p>
-        {% endif %}
-        {% endfor %}
+                <h1>Player 1's Crew:</h1>
+                {% for role, character in crew1.items() %}
+                {% if character %}
+                <p>{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
+                {% else %}
+                <p>{{ role }}: Not assigned</p>
+                {% endif %}
+                {% endfor %}
 
-        <form method="post">
-            <div class="form-group">
-                <label for="player">Player:</label>
-                <input type="text" class="form-control" id="player" name="player">
+                <h2>New Character:</h2>
+                <p>{{ new_character1["url"].split('/').pop().replace('_', ' ') }}</p>
+                
+                <form method="post">
+                    <input type="hidden" name="player" value="1">
+                    <div class="form-group">
+                        <label for="role">Assign to Role:</label>
+                        <input type="text" class="form-control" id="role" name="role">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Assign</button>
+                </form>
+                <div>
+                    <a href="/crewbuilder" class="btn btn-secondary mt-2">Re-roll</a>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="role">Role:</label>
-                <input type="text" class="form-control" id="role" name="role">
+
+            <div class="col">
+                <h1>Player 2's Crew:</h1>
+                {% for role, character in crew2.items() %}
+                {% if character %}
+                <p>{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
+                {% else %}
+                <p>{{ role }}: Not assigned</p>
+                {% endif %}
+                {% endfor %}
+                
+                <h2>New Character:</h2>
+                <p>{{ new_character2["url"].split('/').pop().replace('_', ' ') }}</p>
+
+                <form method="post">
+                    <input type="hidden" name="player" value="2">
+                    <div class="form-group">
+                        <label for="role">Assign to Role:</label>
+                        <input type="text" class="form-control" id="role" name="role">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Assign</button>
+                </form>
+                <div>
+                    <a href="/crewbuilder" class="btn btn-secondary mt-2">Re-roll</a>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Assign</button>
-        </form>
+        </div>
 
         <div class="mt-5 text-center">
             <a href="/" class="btn btn-secondary">Back to Home</a>

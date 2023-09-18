@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, redirect
 import json
 import random
 
@@ -62,8 +62,9 @@ def crewbuilder():
 
         return redirect('/crewbuilder')
     else:
-        return render_template('crewbuilder.html', crew1=crew1, crew2=crew2)
-
+        return render_template('crewbuilder.html', crew1=crew1, crew2=crew2, 
+                               new_character1=get_random_character_from_easy_medium_or_hard_only(),
+                               new_character2=get_random_character_from_easy_medium_or_hard_only())
 @app.route('/')
 def home():
     return render_template('index.html')

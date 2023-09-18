@@ -26,7 +26,7 @@
                 {% endfor %}
 
                 <h2>New Character:</h2>
-                <p>{{ new_character1["url"].split('/').pop().replace('_', ' ') }}</p>
+                <p><a href="{{ new_character1['url'] }}">{{ new_character1["url"].split('/').pop().replace('_', ' ') }}</a></p>
                 
                 <form method="post">
                     <input type="hidden" name="player" value="1">
@@ -52,7 +52,7 @@
                 {% endfor %}
                 
                 <h2>New Character:</h2>
-                <p>{{ new_character2["url"].split('/').pop().replace('_', ' ') }}</p>
+                <p><a href="{{ new_character2['url'] }}">{{ new_character2["url"].split('/').pop().replace('_', ' ') }}</a></p>
 
                 <form method="post">
                     <input type="hidden" name="player" value="2">

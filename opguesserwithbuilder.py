@@ -3,6 +3,7 @@ import json
 import random
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'
 
 # Load the characters from the JSON file
 with open('opwikilinksdifficulty.json', 'r') as file:
@@ -48,23 +49,34 @@ crew2 = { 'Captain': None,
           'Shipwright': None,
           'Archeologist': None }
 
+def roll_new_characters():
+    session['new_character1'] = get_random_character_from_easy_medium_or_hard_only()
+    session['new_character2'] = get_random_character_from_easy_medium_or_hard_only()
+
 @app.route('/crewbuilder', methods=['GET', 'POST'])
 def crewbuilder():
     if request.method == 'POST':
         player = request.form['player']
         role = request.form['role']
-        character = get_random_character_from_easy_medium_or_hard_only()
-
+        
         if player == "1" and not crew1[role]:
-            crew1[role] = character
+            crew1[role] = session['new_character1']
         elif player == "2" and not crew2[role]:
-            crew2[role] = character
-
+            crew2[role] = session['new_character2']
+            
         return redirect('/crewbuilder')
     else:
+        if 'new_character1' not in session:
+            roll_new_characters()
+            
         return render_template('crewbuilder.html', crew1=crew1, crew2=crew2, 
-                               new_character1=get_random_character_from_easy_medium_or_hard_only(),
-                               new_character2=get_random_character_from_easy_medium_or_hard_only())
+                               new_character1=session['new_character1'],
+                               new_character2=session['new_character2'])
+
+@app.route('/reroll', methods=['GET'])
+def reroll():
+    roll_new_characters()
+    return redirect('/crewbuilder')
 @app.route('/')
 def home():
     return render_template('index.html')

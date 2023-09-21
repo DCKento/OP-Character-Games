@@ -2,14 +2,14 @@
 
 A collection of games based around the series One Piece, built to play with friends.
 
-One Piece Character Gueser
+## One Piece Character Gueser
 Randomly selects a One Piece character based on the desired difficulty setting. Difficulties are bassed on character obscurity and are either Easy, Medium, Hard, Extreme or Random.
 
 There are currently 380 different characters that could be selected, with a difficulty selector enabled. Once a character is selected, the wikilink also supplied.
 
 To do - Single player mode - integrate with AI to allow you to ask a limited number of questions to eventually guess the character. Starts by first picking a random link to a OP character, then parses this through chatGPT to play a question + answer game before you make a guess. ChatGPT will answer only with "yes", "no" or "don't know" based on the information contained within the wikipedia page for that character. There are 10 questions a player can have before making a final guess.
 
-One Piece Crew Builderr
+## One Piece Crew Builder
 Build the best crew against a friend.
 
 - Two random One Piece characters are generated, one for each player. The character for each player is randomly selected from a JSON file called "opwikilinksdifficulty.json". Both players are expected to get different characters.

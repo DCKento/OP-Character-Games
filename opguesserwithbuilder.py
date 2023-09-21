@@ -63,7 +63,7 @@ def crewbuilder():
             crew1[role] = session['new_character1']
         elif player == "2" and not crew2[role]:
             crew2[role] = session['new_character2']
-            
+        
         return redirect('/crewbuilder')
     else:
         if 'new_character1' not in session:
@@ -75,8 +75,10 @@ def crewbuilder():
 
 @app.route('/reroll', methods=['GET'])
 def reroll():
+    # Roll new characters when "Re-roll" button is clicked 
     roll_new_characters()
     return redirect('/crewbuilder')
+
 @app.route('/')
 def home():
     return render_template('index.html')

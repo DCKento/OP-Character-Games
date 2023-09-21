@@ -16,49 +16,39 @@
         <div class="row">
             <div class="col">
 
-                <h1>Player 1's Crew:</h1>
+                <h1>Warriors of Elbaf:</h1>
                 {% for role, character in crew1.items() %}
                 {% if character %}
                 <p>{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
                 {% else %}
-                <p>{{ role }}: Not assigned</p>
+                <form method="post">
+                    <input type="hidden" name="player" value="1">
+                    <input type="hidden" name="role" value="{{ role }}">
+                    <button type="submit" class="btn btn-primary">{{ role }}</button>
+                </form>
                 {% endif %}
                 {% endfor %}
 
                 <h2>New Character:</h2>
                 <p><a href="{{ new_character1['url'] }}">{{ new_character1["url"].split('/').pop().replace('_', ' ') }}</a></p>
-                
-                <form method="post">
-                    <input type="hidden" name="player" value="1">
-                    <div class="form-group">
-                        <label for="role">Assign to Role:</label>
-                        <input type="text" class="form-control" id="role" name="role">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Assign</button>
-                </form>
             </div>
 
             <div class="col">
-                <h1>Player 2's Crew:</h1>
+                <h1>Laugh Tale Enjoyers:</h1>
                 {% for role, character in crew2.items() %}
                 {% if character %}
                 <p>{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
                 {% else %}
-                <p>{{ role }}: Not assigned</p>
+                <form method="post">
+                    <input type="hidden" name="player" value="2">
+                    <input type="hidden" name="role" value="{{ role }}">
+                    <button type="submit" class="btn btn-primary">{{ role }}</button>
+                </form>
                 {% endif %}
                 {% endfor %}
                 
                 <h2>New Character:</h2>
                 <p><a href="{{ new_character2['url'] }}">{{ new_character2["url"].split('/').pop().replace('_', ' ') }}</a></p>
-
-                <form method="post">
-                    <input type="hidden" name="player" value="2">
-                    <div class="form-group">
-                        <label for="role">Assign to Role:</label>
-                        <input type="text" class="form-control" id="role" name="role">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Assign</button>
-                </form>
             </div>
         </div>
 

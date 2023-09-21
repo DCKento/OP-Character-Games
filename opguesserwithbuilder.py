@@ -89,5 +89,22 @@ def random_character():
     selected_character = get_character_by_difficulty(difficulty)
     return jsonify(selected_character)
 
+@app.route('/reset_game', methods=['GET'])
+def reset_game():
+    # Reset crews data
+    global crew1, crew2
+    crew1 = {role: None for role in crew1}
+    crew2 = {role: None for role in crew2}
+
+    # Clear session data
+    if 'new_character1' in session:
+        del session['new_character1']
+
+    if 'new_character2' in session:
+        del session['new_character2']
+
+    # Redirect to crewbuilder page
+    return redirect('/crewbuilder')
+
 if __name__ == "__main__":
     app.run(debug=True)

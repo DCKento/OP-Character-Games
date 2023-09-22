@@ -16,12 +16,16 @@ def get_character_by_difficulty(difficulty):
         characters_of_selected_difficulty = [character for character in characters if character['difficulty'].lower() == difficulty.lower()]
         return random.choice(characters_of_selected_difficulty)
     
+selected_characters = []
+
 def get_random_character_from_easy_medium_or_hard_only():
+    global selected_characters
     character = get_character_by_difficulty("random")
 
-    while character["difficulty"] == "Extreme":
+    while character in selected_characters or character["difficulty"] == "Extreme":
         character = get_character_by_difficulty("random")
         
+    selected_characters.append(character)    
     return character
 
 # Structures to hold crew members for player 1 and player 2
@@ -95,6 +99,10 @@ def reset_game():
     global crew1, crew2
     crew1 = {role: None for role in crew1}
     crew2 = {role: None for role in crew2}
+
+    # Clear selected characters list
+    global selected_characters
+    selected_characters = []
 
     # Clear session data
     if 'new_character1' in session:

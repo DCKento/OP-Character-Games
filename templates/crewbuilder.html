@@ -34,7 +34,7 @@
             </div>
 
             <div class="col">
-                <h1>Laugh Tale Enjoyers:</h1>
+                <h1>Laugh Tale Seekers:</h1>
                 {% for role, character in crew2.items() %}
                 {% if character %}
                 <p>{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>

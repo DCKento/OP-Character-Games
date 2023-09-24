@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>One Piece Crew Builder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        var symbols = ["=", ">", "<"];
+        $(".cyclingButton").click(function() {
+            var i = $(this).data('i') || 0;
+            $(this).text(symbols[i % symbols.length]);
+            i++;
+            $(this).data('i', i);
+        });
+        });
+    </script>
 </head>
 <body>
     <div class="container mt-5">
@@ -33,6 +45,16 @@
                 <p><a href="{{ new_character1['url'] }}">{{ new_character1["url"].split('/').pop().replace('_', ' ') }}</a></p>
             </div>
 
+            <div class="col-1 align-items-center justify-content-center d-flex flex-column">
+                {% for role in crew1 %}
+                    {% if crew1[role] and crew2[role] %}
+                        <button class="cyclingButton btn btn-primary mb-2">=</button>
+                    {% else %}
+                        <button class="cyclingButton btn btn-primary mb-2" disabled>=</button>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
             <div class="col">
                 <h1>Laugh Tale Seekers:</h1>
                 {% for role, character in crew2.items() %}
@@ -46,7 +68,7 @@
                 </form>
                 {% endif %}
                 {% endfor %}
-                
+
                 <h2>New Character:</h2>
                 <p><a href="{{ new_character2['url'] }}">{{ new_character2["url"].split('/').pop().replace('_', ' ') }}</a></p>
             </div>
@@ -58,6 +80,7 @@
 
         <div class="mt-5 text-center">
             <a href="/reset_game" class="btn btn-secondary">Play Again</a>
+        </div>
 
         <div class="mt-5 text-center">
             <a href="/" class="btn btn-secondary">Back to Home</a>

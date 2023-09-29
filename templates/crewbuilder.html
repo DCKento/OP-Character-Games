@@ -26,18 +26,26 @@
         </div>
 
         <div class="row">
-            <div class="col">
+            <div class="col-md-5 text-center">
 
                 <h1>Warriors of Elbaf:</h1>
                 {% for role, character in crew1.items() %}
                 {% if character %}
-                <p>{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
+                <div class="row" style="padding-top: 1px; padding-bottom: 3px;">
+                    <div class="col-12">
+                        <p class="mt-1 mb-1" >{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
+                    </div>
+                </div>
                 {% else %}
-                <form method="post">
-                    <input type="hidden" name="player" value="1">
-                    <input type="hidden" name="role" value="{{ role }}">
-                    <button type="submit" class="btn btn-primary">{{ role }}</button>
-                </form>
+                <div class="row">
+                    <div class="col-12">
+                        <form method="post">
+                            <input type="hidden" name="player" value="1">
+                            <input type="hidden" name="role" value="{{ role }}">
+                            <button type="submit" class="btn btn-primary btn-block btn-sm mt-1 mb-1">{{ role }}</button>
+                        </form>
+                    </div>
+                </div>
                 {% endif %}
                 {% endfor %}
 
@@ -45,27 +53,35 @@
                 <p><a href="{{ new_character1['url'] }}">{{ new_character1["url"].split('/').pop().replace('_', ' ') }}</a></p>
             </div>
 
-            <div class="col-1 align-items-center justify-content-center d-flex flex-column">
+            <div class="col-md-2 d-flex flex-column justify-content-start align-items-center" style="padding-top: 50px;">
                 {% for role in crew1 %}
                     {% if crew1[role] and crew2[role] %}
-                        <button class="cyclingButton btn btn-primary mb-2">=</button>
+                        <button class="cyclingButton btn btn-primary mb-1 mt-1 btn-sm" style="width: 100%;">=</button>
                     {% else %}
-                        <button class="cyclingButton btn btn-primary mb-2" disabled>=</button>
+                        <button class="cyclingButton btn btn-primary mb-1 mt-1 btn-sm" style="width: 100%;" disabled>=</button>
                     {% endif %}
                 {% endfor %}
             </div>
             
-            <div class="col">
+            <div class="col-md-5 text-center">
                 <h1>Laugh Tale Seekers:</h1>
                 {% for role, character in crew2.items() %}
                 {% if character %}
-                <p>{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
+                <div class="row" style="padding-top: 1px; padding-bottom: 3px;">
+                    <div class="col-12">
+                        <p class="mt-1 mb-1">{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
+                    </div>
+                </div>
                 {% else %}
-                <form method="post">
-                    <input type="hidden" name="player" value="2">
-                    <input type="hidden" name="role" value="{{ role }}">
-                    <button type="submit" class="btn btn-primary">{{ role }}</button>
-                </form>
+                <div class="row">
+                    <div class="col-12">
+                        <form method="post">
+                            <input type="hidden" name="player" value="2">
+                            <input type="hidden" name="role" value="{{ role }}">
+                            <button type="submit" class="btn btn-primary btn-block btn-sm mt-1 mb-1">{{ role }}</button>
+                        </form>
+                    </div>
+                </div>
                 {% endif %}
                 {% endfor %}
 

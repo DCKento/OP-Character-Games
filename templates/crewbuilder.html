@@ -7,15 +7,36 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
-        var symbols = ["=", ">", "<"];
-        $(".cyclingButton").click(function() {
-            var i = $(this).data('i') || 0;
-            $(this).text(symbols[i % symbols.length]);
-            i++;
-            $(this).data('i', i);
-        });
-        });
+    $(document).ready(function() {
+    var symbols = ["=", ">", "<"];
+    var crew1Score = 0;
+    var crew2Score = 0;
+
+    $(".cyclingButton").click(function() {
+        var i = $(this).data('i') || 0;
+        var currentSymbol = $(this).text();
+        
+        i++;
+        $(this).text(symbols[i % symbols.length]);
+        var newSymbol = $(this).text();
+
+        if (currentSymbol !== newSymbol) {
+            // Subtract points if moving away from ">" or "<"
+            if (currentSymbol === ">") crew1Score--;
+            else if (currentSymbol === "<") crew2Score--;
+
+            // Add points for the new symbol
+            if (newSymbol === ">") crew1Score++;
+            else if (newSymbol === "<") crew2Score++;
+        }
+
+        // Update the displayed score
+        $("#crew1Score").text(crew1Score);
+        $("#crew2Score").text(crew2Score);
+
+        $(this).data('i', i);
+    });
+});
     </script>
 </head>
 <body>
@@ -93,6 +114,11 @@
         <div class="mt-5 text-center">
             <a href="/reroll" class="btn btn-secondary">Re-roll</a>
         </div>
+
+        <div class="mt-5 text-center">
+            <h3>Score</h3>
+            <p><span id="crew1Score">0</span> - <span id="crew2Score">0</span></p>
+        </div>        
 
         <div class="mt-5 text-center">
             <a href="/reset_game" class="btn btn-secondary">Play Again</a>

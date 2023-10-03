@@ -6,6 +6,19 @@
     <title>One Piece Crew Builder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        .role-container {
+            height: 37px; /* adjust this value as needed */
+            display: flex;
+            align-items: center; /* this vertically centers the content */
+            justify-content: center;
+        }
+        
+        .cyclingButton {
+            height: 30px; /* adjust this value to match .role-container height */
+        }
+    </style>
     <script>
     $(document).ready(function() {
     var symbols = ["=", ">", "<"];
@@ -51,23 +64,25 @@
 
                 <h1>Warriors of Elbaf:</h1>
                 {% for role, character in crew1.items() %}
-                {% if character %}
-                <div class="row" style="padding-top: 1px; padding-bottom: 3px;">
-                    <div class="col-12">
-                        <p class="mt-1 mb-1" >{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
+                <div class="role-container">
+                    {% if character %}
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mt-1 mb-1" >{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
+                        </div>
                     </div>
-                </div>
-                {% else %}
-                <div class="row">
-                    <div class="col-12">
-                        <form method="post">
-                            <input type="hidden" name="player" value="1">
-                            <input type="hidden" name="role" value="{{ role }}">
-                            <button type="submit" class="btn btn-primary btn-block btn-sm mt-1 mb-1">{{ role }}</button>
-                        </form>
+                    {% else %}
+                    <div class="row">
+                        <div class="col-12">
+                            <form method="post">
+                                <input type="hidden" name="player" value="1">
+                                <input type="hidden" name="role" value="{{ role }}">
+                                <button type="submit" class="btn btn-primary btn-block btn-sm mt-1 mb-1">{{ role }}</button>
+                            </form>
+                        </div>
                     </div>
+                    {% endif %}
                 </div>
-                {% endif %}
                 {% endfor %}
 
                 <h2>New Character:</h2>
@@ -87,23 +102,25 @@
             <div class="col-md-5 text-center">
                 <h1>Laugh Tale Seekers:</h1>
                 {% for role, character in crew2.items() %}
-                {% if character %}
-                <div class="row" style="padding-top: 1px; padding-bottom: 3px;">
-                    <div class="col-12">
-                        <p class="mt-1 mb-1">{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
+                <div class="role-container">
+                    {% if character %}
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mt-1 mb-1">{{ role }}: <a href="{{ character['url'] }}">{{ character["url"].split('/').pop().replace('_', ' ') }}</a></p>
+                        </div>
                     </div>
-                </div>
-                {% else %}
-                <div class="row">
-                    <div class="col-12">
-                        <form method="post">
-                            <input type="hidden" name="player" value="2">
-                            <input type="hidden" name="role" value="{{ role }}">
-                            <button type="submit" class="btn btn-primary btn-block btn-sm mt-1 mb-1">{{ role }}</button>
-                        </form>
+                    {% else %}
+                    <div class="row">
+                        <div class="col-12">
+                            <form method="post">
+                                <input type="hidden" name="player" value="2">
+                                <input type="hidden" name="role" value="{{ role }}">
+                                <button type="submit" class="btn btn-primary btn-block btn-sm mt-1 mb-1">{{ role }}</button>
+                            </form>
+                        </div>
                     </div>
+                    {% endif %}
                 </div>
-                {% endif %}
                 {% endfor %}
 
                 <h2>New Character:</h2>
